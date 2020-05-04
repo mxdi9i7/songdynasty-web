@@ -73,7 +73,6 @@ export default function LiveGamesPage() {
 			}
 		}
 		cards.forEach((v) => {
-			console.log(v.team, team);
 			if (v.team === team) {
 				numberOfTeamMember++;
 			}
