@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import routes from '../../routes';
 
 const Header = () => {
 	return (
@@ -13,26 +15,19 @@ const Header = () => {
 				data-target='#navbarNav'
 				aria-controls='navbarNav'
 				aria-expanded='false'
-				aria-label='Toggle navigation'>
+				aria-label='Toggle navigation'
+			>
 				<span className='navbar-toggler-icon'></span>
 			</button>
 			<div className='collapse navbar-collapse' id='navbarNav'>
 				<ul className='navbar-nav'>
-					<li className='nav-item'>
-						<a className='nav-link' href='#'>
-							游戏记录
-						</a>
-					</li>
-					<li className='nav-item'>
-						<a className='nav-link' href='#'>
-							游戏日程
-						</a>
-					</li>
-					<li className='nav-item'>
-						<a className='nav-link' href='/auth'>
-							登录/注册
-						</a>
-					</li>
+					{routes.map((link) => (
+						<li className='nav-item'>
+							<Link className='nav-link' to={link.link}>
+								{link.title}
+							</Link>
+						</li>
+					))}
 				</ul>
 			</div>
 		</nav>

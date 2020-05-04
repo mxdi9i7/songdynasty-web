@@ -5,25 +5,24 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-//pages
-import LandingPage from './pages/Landing';
-import AuthPage from './pages/Auth';
-
 //styles
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import routes from './routes';
+
 function App() {
 	return (
 		<div className='App'>
-			<Header />
 			<Router>
 				<React.Fragment>
-					<Route exact path='/' component={LandingPage} />
-					<Route exact path='/auth' component={AuthPage} />
+					<Header />
+					{routes.map((route) => (
+						<Route exact path={route.link} component={route.component} />
+					))}
+					<Footer />
 				</React.Fragment>
 			</Router>
-			<Footer />
 		</div>
 	);
 }
