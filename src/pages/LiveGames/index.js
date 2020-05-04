@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import roles from '../../constants/roles';
+import React, { useState, useEffect } from 'react';
+import roles, { teams, teamsColor } from '../../constants/roles';
 import './index.scss';
 
 export default function LiveGamesPage() {
+	const defaultPlayers = 9;
 	const [showModal, setShowModal] = useState(true);
 	const [cards, setCards] = useState([]);
-	const [playerCount, setPlayerCount] = useState(null);
+	const [playerCount, setPlayerCount] = useState(defaultPlayers);
 
 	const handleRolesUpdate = (newCount) => {
 		const nextCards = [...cards];
@@ -20,11 +21,35 @@ export default function LiveGamesPage() {
 		setCards(nextCards);
 	};
 
+	useEffect(() => {
+		const nextCards = [...cards];
+		for (let i = 0; i < defaultPlayers; i++) {
+			nextCards.push({});
+		}
+		setCards(nextCards);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const handleAddRole = (e, role) => {
 		e.preventDefault();
 		const nextCards = [...cards];
-		nextCards.push(role);
-		setCards(nextCards);
+		let currentFilled = 0;
+		let nextAvailableSpot = 0;
+
+		for (let i = 0; i < cards.length; i++) {
+			const v = cards[i];
+			if (v.id) {
+				currentFilled++;
+			} else {
+				nextAvailableSpot = i;
+				break;
+			}
+		}
+
+		if (currentFilled < playerCount) {
+			nextCards[nextAvailableSpot] = role;
+			setCards(nextCards);
+		}
 	};
 
 	const handleRemoveRole = (e, role) => {
@@ -33,9 +58,27 @@ export default function LiveGamesPage() {
 		let indexToRemove;
 		nextCards.forEach((v, i) => (v.id === role.id ? (indexToRemove = i) : -1));
 		if (indexToRemove > -1) {
-			nextCards.splice(indexToRemove, 1);
+			nextCards[indexToRemove] = {};
 		}
 		setCards(nextCards);
+	};
+
+	const getPowerLevelByTeam = (team) => {
+		let numberOfTeamMember = 0;
+		let filledSpots = 0;
+		for (let i = 0; i < cards.length; i++) {
+			const v = cards[i];
+			if (v.id) {
+				filledSpots++;
+			}
+		}
+		cards.forEach((v) => {
+			console.log(v.team, team);
+			if (v.team === team) {
+				numberOfTeamMember++;
+			}
+		});
+		return (numberOfTeamMember / filledSpots) * 100;
 	};
 
 	return (
@@ -81,10 +124,59 @@ export default function LiveGamesPage() {
 									</div>
 								))}
 							</div>
+						</div>
+						<div className='input-container'>
 							<div className='cards-container'>
 								{cards.map((card, i) => (
-									<div className='card'>{card.title}</div>
+									<div className='card'>
+										{card.id ? (
+											<div className='card-content'>
+												<button
+													className='delete-button'
+													onClick={(e) => handleRemoveRole(e, card)}
+												>
+													x
+												</button>
+												<div
+													class='arrow-right'
+													style={{ backgroundColor: teamsColor[card.team] }}
+												>
+													<span>{teams[card.team]}</span>
+												</div>
+												<p>{card.title}</p>
+											</div>
+										) : (
+											<p>空</p>
+										)}
+									</div>
 								))}
+							</div>
+						</div>
+						<div className='input-container'>
+							<div className='power-bar'>
+								{Object.entries(teams).map((teamArr) => {
+									let filled = 0;
+									cards.forEach((v) => v.id && filled++);
+									const percentage = getPowerLevelByTeam(teamArr[0]);
+									return (
+										<div
+											style={{
+												width: `${percentage}%`,
+												backgroundColor: teamsColor[teamArr[0]],
+											}}
+											className='bar'
+										>
+											{percentage > 0 ? (
+												<span>
+													{Math.ceil((percentage / 100) * filled)}
+													{teamArr[1]}
+												</span>
+											) : (
+												''
+											)}
+										</div>
+									);
+								})}
 							</div>
 						</div>
 					</form>

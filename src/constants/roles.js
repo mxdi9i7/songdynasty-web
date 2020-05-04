@@ -2,7 +2,14 @@ export const teams = {
 	god: '神',
 	villager: '民',
 	wolf: '狼',
-	exile: '流浪',
+	exile: '流',
+};
+
+export const teamsColor = {
+	god: 'blue',
+	villager: 'green',
+	wolf: 'red',
+	exile: 'violet',
 };
 
 const roles = [
