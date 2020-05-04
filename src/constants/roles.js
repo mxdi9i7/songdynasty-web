@@ -23,7 +23,7 @@ const roles = [
 			'普通平民没有任何特殊功能，每天白天可以进行发言并参与放逐投票放逐自己心目中的狼人。',
 		team: 'villager',
 		thumbnail:
-			'https://res.cloudinary.com/dtgh01qqo/image/upload/v1581125010/song/newthumb/unnamed_1.jpg',
+			'https://res.cloudinary.com/dtgh01qqo/image/upload/v1588559495/song/newthumb/v2-5ba87b1317bc8b9db4f5b49133864876_hd.jpg',
 		notes: '',
 	},
 	{
@@ -83,7 +83,7 @@ const roles = [
 			'俗称混混，算作民边，开局时率先睁眼选择一位主人，在本局游戏中混血儿的胜利条件是帮助主人取得胜利，主人为好人则混血儿帮好人，主人为狼人则混血儿帮狼人。主人无法获悉自己被混血儿选为主人，混血儿也无法获悉主人的身份。',
 		team: 'exile',
 		thumbnail:
-			'https://res.cloudinary.com/dtgh01qqo/image/upload/v1581124148/song/006tT5Uqjw1f4xu3x4hzjj3065066aaf.jpg',
+			'https://res.cloudinary.com/dtgh01qqo/image/upload/v1588559496/song/newthumb/download_1.jpg',
 		notes: '',
 	},
 	{

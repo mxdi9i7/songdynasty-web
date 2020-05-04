@@ -1,3 +1,11 @@
 .App {
 	background-color: #f0f8ff;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.page {
+		padding: 100px 0;
+	}
 }
