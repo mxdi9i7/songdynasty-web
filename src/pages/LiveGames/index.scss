@@ -4,10 +4,18 @@
 		position: fixed;
 		top: 50%;
 		left: 50%;
+		height: 80vh;
+		overflow-y: scroll;
 		transform: translate(-50%, -50%);
 		padding: 30px;
 		background-color: #fff;
 
+		.submit-btn {
+			position: sticky;
+			top: 0px;
+			right: 0px;
+			float: right;
+		}
 		.role-selector {
 			display: grid;
 			width: 100%;
@@ -48,12 +56,18 @@
 				min-height: 100px;
 				position: relative;
 				overflow: hidden;
+				transition: 0.2s;
+
+				&:hover {
+					background-color: #eee;
+					cursor: pointer;
+				}
 
 				.delete-button {
 					position: absolute;
 					top: 5px;
 					right: 5px;
-					background-color: #eee;
+					background-color: #ddd;
 					border: none;
 					border-radius: 5px;
 					height: 30px;
