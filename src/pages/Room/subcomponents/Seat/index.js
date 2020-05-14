@@ -29,8 +29,6 @@ export default function Seat({
 				(v, i) => v && v.userId === player.userId,
 			);
 
-			console.log(prevSeat);
-
 			if (prevSeat) nextGameData.players[prevSeat.seatNumber] = {};
 
 			nextGameData.players[seatNumber] = {
@@ -50,6 +48,20 @@ export default function Seat({
 		}
 	};
 
+	const handleLeaveSeat = () => {
+		const nextGameData = { ...gameData };
+		nextGameData.players[seatNumber] = {};
+		db()
+			.ref('games/' + gameId)
+			.set(nextGameData)
+			.then((resp) => {
+				console.log('success');
+			})
+			.catch((err) => {
+				alert(err);
+			});
+	};
+
 	const playerInSeat = gameData.players[seatNumber];
 	const user = useContext(AuthContext);
 
@@ -63,7 +75,7 @@ export default function Seat({
 						<p>{playerInSeat.username}</p>
 					</div>
 					{user.uid === playerInSeat.userId ? (
-						<button onClick={handleSit} className='btn btn-warning'>
+						<button onClick={handleLeaveSeat} className='btn btn-warning'>
 							离开座位
 						</button>
 					) : (
@@ -73,7 +85,6 @@ export default function Seat({
 			) : (
 				<React.Fragment>
 					<div className='player-info'>
-						{/* <img src={defaultAvatarURL} alt='avatar' /> */}
 						<p>空位</p>
 					</div>
 					<button onClick={handleSit} className='btn btn-primary'>
