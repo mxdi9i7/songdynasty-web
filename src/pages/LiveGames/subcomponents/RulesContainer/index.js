@@ -5,7 +5,7 @@ export default function RulesContainer({ currentRules, handleRuleChange }) {
 	return (
 		<div className='rules-container'>
 			{rules.map((rule) => (
-				<div className='checkbox-container'>
+				<div key={rule} className='checkbox-container'>
 					<input
 						onChange={(e) => handleRuleChange(rule, e.target.checked)}
 						id={rule}

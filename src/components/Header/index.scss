@@ -1,0 +1,32 @@
+.navbar-collapse {
+	justify-content: space-between;
+
+	.user-avatar {
+		display: flex;
+		align-items: center;
+		img {
+			border: 1px solid transparent;
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+			transition-duration: 0.2s;
+			margin-right: 10px;
+		}
+
+		.actions {
+			display: inline-flex;
+			flex-direction: column;
+
+			.logout {
+				&:hover {
+					cursor: pointer;
+					text-decoration: underline;
+				}
+			}
+		}
+		span {
+			font-weight: 600;
+			font-size: 14px;
+		}
+	}
+}

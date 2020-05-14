@@ -9,7 +9,7 @@ export default function CardsContainer({
 	return (
 		<div className='cards-container'>
 			{cards.map((card, i) => (
-				<div className='card'>
+				<div key={i} className='card'>
 					{card.id ? (
 						<div className='card-content'>
 							<button
@@ -19,7 +19,7 @@ export default function CardsContainer({
 								x
 							</button>
 							<div
-								class='arrow-right'
+								className='arrow-right'
 								style={{ backgroundColor: teamsColor[card.team] }}
 							>
 								<span>{teams[card.team]}</span>

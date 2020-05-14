@@ -1,0 +1,36 @@
+.seats-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 15px;
+
+	.seat-container {
+		padding: 15px;
+		background-color: #fff;
+		height: 200px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.player-info {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			justify-self: stretch;
+			img {
+				height: 50px;
+				width: 50px;
+				border-radius: 50%;
+			}
+			p {
+				font-weight: 600;
+				font-size: 14px;
+				margin: 0;
+			}
+		}
+
+		button {
+		}
+	}
+}

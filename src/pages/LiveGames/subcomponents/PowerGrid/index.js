@@ -19,12 +19,13 @@ export default function PowerGrid({ teams, cards, teamsColor }) {
 	};
 	return (
 		<div className='power-bar'>
-			{Object.entries(teams).map((teamArr) => {
+			{Object.entries(teams).map((teamArr, i) => {
 				let filled = 0;
 				cards.forEach((v) => v.id && filled++);
 				const percentage = getPowerLevelByTeam(teamArr[0]);
 				return (
 					<div
+						key={i}
 						style={{
 							width: `${percentage}%`,
 							backgroundColor: teamsColor[teamArr[0]],

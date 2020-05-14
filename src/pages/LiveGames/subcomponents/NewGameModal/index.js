@@ -7,7 +7,7 @@ import RulesContainer from '../RulesContainer';
 import PlayerCount from '../PlayerCount';
 import RoomTitle from '../RoomTitle';
 
-export default function NewGameModal({}) {
+export default function NewGameModal({ handleCreateGame }) {
 	const defaultPlayers = 12;
 	const [cards, setCards] = useState([]);
 	const [playerCount, setPlayerCount] = useState(defaultPlayers);
@@ -132,9 +132,21 @@ export default function NewGameModal({}) {
 	return (
 		<div className='dialog'>
 			<form>
-				<button className='submit-btn btn btn-primary'>创建房间</button>
-				{formInputs.map((v) => (
-					<div className='input-container'>
+				<button
+					className='submit-btn btn btn-primary'
+					onClick={(e) =>
+						handleCreateGame(e, {
+							playerCount,
+							rules,
+							title,
+							cards,
+						})
+					}
+				>
+					创建房间
+				</button>
+				{formInputs.map((v, i) => (
+					<div key={i} className='input-container'>
 						<v.component {...v.props} />
 					</div>
 				))}

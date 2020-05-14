@@ -1,7 +1,7 @@
 import RolesPage from './pages/Roles';
 import LiveGamesPage from './pages/LiveGames';
 import LandingPage from './pages/Landing';
-import AuthPage from './pages/Auth';
+// import AuthPage from './pages/Auth';
 
 const routes = [
 	// {

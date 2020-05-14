@@ -1,5 +1,16 @@
 .live-page {
-	min-height: 100vh;
+	.games-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 25px;
+	}
+
+	.button-container {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 20px;
+	}
+
 	.dialog {
 		position: fixed;
 		top: 50%;

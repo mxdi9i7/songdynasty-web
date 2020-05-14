@@ -7,8 +7,8 @@ export default function RolesPicker({
 }) {
 	return (
 		<div className='role-selector'>
-			{roles.map((role) => (
-				<div className='role-block'>
+			{roles.map((role, i) => (
+				<div key={i} className='role-block'>
 					<span>{role.title}</span>
 					<div className='button-container'>
 						<button onClick={(e) => handleAddRole(e, role)}>+</button>
