@@ -2,9 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { db } from '../../services';
 import Seat from './subcomponents/Seat';
 import { AuthContext } from '../../App';
+import { defaultAvatarURL } from '../../constants/avatar';
 import './index.scss';
-const defaultAvatarURL =
-	'https://res.cloudinary.com/dtgh01qqo/image/upload/v1581124148/song/006tT5Uqjw1f4xtzu7lp3j306106674s.jpg';
 
 export default function RoomPage({ match }) {
 	const { id } = match.params;

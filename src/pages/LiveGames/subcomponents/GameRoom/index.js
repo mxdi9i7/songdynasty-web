@@ -46,7 +46,7 @@ export default function GameRoom({ data, id }) {
 						{villagerCount}民 {godCount}神 {wolfCount}狼
 					</span>
 					<div className='player-avatar-container'>
-						{data.players.map((p, i) => (
+						{Object.values(data.players).map((p, i) => (
 							<React.Fragment>
 								<img
 									className={classnames('player-avatar')}
@@ -60,7 +60,7 @@ export default function GameRoom({ data, id }) {
 				</p>
 			</div>
 			<div class='card-footer'>
-				{data.players.length < data.numberOfPlayers ? (
+				{Object.keys(data.players).length < data.numberOfPlayers ? (
 					<Link to={`/room/${id}`} className=' btn btn-block btn-primary'>
 						加入
 					</Link>

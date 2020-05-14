@@ -1,5 +1,8 @@
 import React from 'react';
 import { db } from '../../../../services';
+import { useContext } from 'react';
+import { AuthContext } from '../../../../App';
+import { defaultAvatarURL } from '../../../../constants/avatar';
 
 export default function Seat({
 	gameData,
@@ -48,19 +51,35 @@ export default function Seat({
 	};
 
 	const playerInSeat = gameData.players[seatNumber];
+	const user = useContext(AuthContext);
 
 	return (
 		<div className='seat-container shadow-sm'>
 			<span>{seatNumber + 1}号玩家</span>
 			{playerInSeat && playerInSeat.username ? (
-				<div className='player-info'>
-					<img src={playerInSeat.avatar} alt='avatar' />
-					<p>{playerInSeat.username}</p>
-				</div>
+				<React.Fragment>
+					<div className='player-info'>
+						<img src={playerInSeat.avatar} alt='avatar' />
+						<p>{playerInSeat.username}</p>
+					</div>
+					{user.uid === playerInSeat.userId ? (
+						<button onClick={handleSit} className='btn btn-warning'>
+							离开座位
+						</button>
+					) : (
+						<span className='spacer'></span>
+					)}
+				</React.Fragment>
 			) : (
-				<button onClick={handleSit} className='btn btn-primary'>
-					坐下
-				</button>
+				<React.Fragment>
+					<div className='player-info'>
+						{/* <img src={defaultAvatarURL} alt='avatar' /> */}
+						<p>空位</p>
+					</div>
+					<button onClick={handleSit} className='btn btn-primary'>
+						坐下
+					</button>
+				</React.Fragment>
 			)}
 		</div>
 	);
